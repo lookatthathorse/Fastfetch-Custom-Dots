@@ -1,0 +1,141 @@
+// Inspired by https://github.com/usgraphics/TR-100
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": null,
+    "display": {
+        "pipe": true,
+        "key": {
+            "width": 16
+        },
+        "separator": "│ ",
+        "percent": {
+            "type": ["bar", "hide-others"]
+        },
+        "bar": {
+            "border": null,
+            "char": {
+                "elapsed": "█",
+                "total": "░"
+            },
+            "width": 40
+        },
+        "constants": [
+            "\u001b[42C"
+        ]
+    },
+    "modules": [
+        {
+            "type": "custom",
+            "format": "┌┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┐"
+        },
+        {
+            "type": "custom",
+            "format": "├┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┤"
+        },
+        {
+            "type": "custom",
+            "format": "│                      WELCOME BACK!                    │"
+        },
+        {
+            "type": "custom",
+            "format": "├────────────┬──────────────────────────────────────────┤"
+        },
+        {
+            "type": "host",
+            "key": "│ MACHINE    │{$1}",
+            "format": "{1}"
+        },
+        {
+            "type": "display",
+            "key": "│ DISPLAY    │{$1}",
+            "format": "{1} x {2} @ {3} Hz"
+        },
+        {
+            "type": "cpu",
+            "key": "│ CPU        │{$1}",
+            "format": "{1} @ {7}"
+        },
+        {
+            "type": "gpu",
+            "key": "│ GPU        │{$1}",
+            "format": "{name:15}" // Left-align GPU name within 15 characters
+
+        },
+        {
+            "type": "memory",
+            "key": "│ RAM        │{$1}",
+            "format": "{used} / {total} [{percentage}]",
+            "percent": {
+                "type": ["num"]
+            }
+        },
+        {
+            "type": "disk",
+            "key": "│ SSD        │{$1}",
+            "format": "{size-used} / {size-total} [{size-percentage}]",
+            "folders": "/",
+            "percent": {
+                "type": ["num"]
+            }
+        },
+        {
+            "type": "battery",
+            "key": "│ BATTERY    │{$1}",
+            "format": "{capacity}% [{status}]",
+            "percent": {
+                "type": ["num"]
+            }
+        },
+        {
+            "type": "custom",
+            "format": "├────────────┼──────────────────────────────────────────┤"
+        },
+        {
+            "type": "os",
+            "key": "│ OS         │{$1}",
+            "format": "{3}"
+        },
+        {
+            "type": "kernel",
+            "key": "│ KERNEL     │{$1}",
+            "format": "{2}"
+        },
+        {
+            "type": "shell",
+            "key": "│ SHELL      │{$1}"
+        },
+        {
+            "type": "de",
+            "key": "│ DE         │{$1}"
+        },
+        {
+            "type": "wm",
+            "key": "│ WM         │{$1}"
+        },
+        {
+            "type": "custom",
+            "format": "├────────────┼──────────────────────────────────────────┤"
+        },
+        {
+            "type": "command",
+            "key": "│ STATUS     │{$1}",
+            "text": "s=$(nordvpn status); status=$(echo \"$s\" | awk 'NR==1{sub(/^Status: /, \"\"); if ($0==\"Connected\") print \"\\x1b[32m\" $0 \"\\x1b[0m\"; else print \"\\x1b[31m\" $0 \"\\x1b[0m\"}'); uptime=$(echo \"$s\" | sed -n '11s/^Uptime: //p'); echo \"$status $uptime\"",
+            "format": "{#green}{1}"
+        },
+        {
+            "type": "command",
+            "key": "│ LOCATION   │{$1}",
+            "text": "s=$(nordvpn status); city=$(echo \"$s\" | sed -n '6s/^City: //p'); server=$(echo \"$s\" | sed -n '2s/^Server: Canada //p'); echo \"$city $server\"",
+            "format": "{#green}{1}"
+
+        },
+        {
+            "type": "custom",
+            "format": "├┬┬┬┬┬┬┬┬┬┬┬┬┼┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┬┤"
+        },
+        {
+            "type": "custom",
+            "format": "└┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┴┘"
+        },
+    ]
+  }
